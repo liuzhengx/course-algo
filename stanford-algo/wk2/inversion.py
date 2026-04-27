@@ -67,7 +67,7 @@ def cross_count(list1:list, list2:list):
       j += 1
     else:
       k += 1
-      count_inversion += len(list1) - j
+      count_inversion += (len(list1) - j)
   return count_inversion
 
 
@@ -76,19 +76,18 @@ def count_inversion(my_list:list):
 
   if length <= 1:
     return 0
-  
-  left_list, right_list = my_list[:length//2], my_list[length//2:]
-  
-  left_inversion = count_inversion(left_list)
-  right_inversion = count_inversion(right_list)
-  cross_inversion = cross_count(left_list,right_list)
+  else:
+    left_list, right_list = my_list[:length//2], my_list[length//2:]
 
-  total_inversion = left_inversion + right_inversion + cross_inversion
+    left_inversion = count_inversion(left_list)
+    right_inversion = count_inversion(right_list)
+    cross_inversion = cross_count(merge_sort(left_list),merge_sort(right_list))
+    total_inversion = left_inversion + right_inversion + cross_inversion
   return total_inversion
 
 import pandas as pd
 
-raw_data = pd.read_csv('/Users/liuzhengxun/Desktop/coursera-algo/stanford-algo/wk2/IntegerArray.txt', header = None)
+raw_data = pd.read_csv('/Users/liuzhengxun/Documents/GitHub/course-algo/stanford-algo/wk2/IntegerArray.txt', header = None)
 
 data = list(raw_data[0])
 
